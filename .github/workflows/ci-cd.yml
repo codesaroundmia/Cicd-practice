@@ -1,0 +1,69 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Build HTML
+        run: |
+          echo "Building HTML page..."
+          python create_page.py
+
+      - name: Automated Test
+        run: |
+          echo "Running automated test..."
+          if [ ! -f index.html ]; then
+            echo "ERROR: index.html not found!"
+            exit 1
+          fi
+
+          if grep -q "Mahsa Ghazaghi" index.html && grep -q "40113011016" 
+index.html; then
+            echo "TEST PASSED: Name and ID found!"
+          else
+            echo "TEST FAILED: Missing name or ID!"
+            cat index.html
+            exit 1
+          fi
+
+      - name: Deploy to Server
+        if: github.ref == 'refs/heads/main'
+        env:
+          SERVER_IP: 178.239.151.73
+          DEPLOY_PATH: /var/www/MGhazaghi/
+          SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          echo "Deploying to server..."
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts 2>/dev/null || 
+true
+          
+          which rsync || sudo apt-get update && sudo apt-get install -y 
+rsync
+          
+          rsync -avz --delete index.html root@$SERVER_IP:$DEPLOY_PATH || 
+echo "Deploy skipped"
+          
+          ssh root@$SERVER_IP << 'EOF' || true
+            chown -R www-data:www-data /var/www/MGhazaghi/
+            chmod -R 755 /var/www/MGhazaghi/
+            echo "Permissions fixed"
+          EOF
+
