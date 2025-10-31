@@ -22,7 +22,7 @@ jobs:
       - name: Build HTML
         run: |
           echo "Building HTML page..."
-          python create_page.py
+          python MahsaGh.py
 
       - name: Automated Test
         run: |
@@ -51,14 +51,11 @@ jobs:
           mkdir -p ~/.ssh
           echo "$SSH_KEY" | tr -d '\r' > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts 2>/dev/null || 
-true
+          ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts 2>/dev/null || true
           
-          which rsync || sudo apt-get update && sudo apt-get install -y 
-rsync
+          which rsync || sudo apt-get update && sudo apt-get install -y rsync
           
-          rsync -avz --delete index.html root@$SERVER_IP:$DEPLOY_PATH || 
-echo "Deploy skipped"
+          rsync -avz --delete index.html root@$SERVER_IP:$DEPLOY_PATH || echo "Deploy skipped"
           
           ssh root@$SERVER_IP << 'EOF' || true
             chown -R www-data:www-data /var/www/MGhazaghi/

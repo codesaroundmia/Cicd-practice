@@ -1,3 +1,4 @@
+
 html_content = """
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +9,7 @@ html_content = """
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(135deg, #74ebd5, #acb6e5); 
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
             font-family: 'Poppins', sans-serif;
             display: flex;
             justify-content: center;
@@ -39,7 +40,7 @@ html_content = """
             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
         }
         .card h2 {
-            color: #2c3e50; 
+            color: #2c3e50;
             margin: 0;
             font-size: 1.8em;
             font-weight: 600;
@@ -70,28 +71,19 @@ html_content = """
     <div class="container">
         <div class="card">
             <h2>Name</h2>
-            <p>Mahsa Ghazaghi</p> 
+            <p>Mahsa Ghazaghi</p>
         </div>
         <div class="card">
             <h2>Student ID</h2>
-            <p>40113011016</p> 
+            <p>40113011016</p>
         </div>
     </div>
 </body>
 </html>
 """
 
-# ذخیره فایل HTML
+
 with open("index.html", "w", encoding="utf-8") as file:
     file.write(html_content)
 
-# راه‌اندازی سرور لوکال
-import http.server
-import socketserver
-
-PORT = 8000
-
-Handler = http.server.SimpleHTTPRequestHandler
-with socketserver.TCPServer(("", PORT), Handler) as httpd:
-    print(f"Server running at http://localhost:{PORT}")
-    httpd.serve_forever()
+print("index.html is created!")
