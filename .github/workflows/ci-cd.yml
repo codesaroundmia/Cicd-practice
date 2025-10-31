@@ -32,8 +32,7 @@ jobs:
             exit 1
           fi
 
-          if grep -q "Mahsa Ghazaghi" index.html && grep -q "40113011016" 
-index.html; then
+          if grep -q "Mahsa Ghazaghi" index.html && grep -q "40113011016" index.html; then
             echo "TEST PASSED: Name and ID found!"
           else
             echo "TEST FAILED: Missing name or ID!"
