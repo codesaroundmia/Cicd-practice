@@ -1,53 +1,62 @@
-name: CI/CD Pipeline for Mahsa's Personal Page
+name: CI/CD Pipeline for my Page
+
 on:
-push:
-branches:
-- main
+  push:
+    branches:
+      - main
+
 jobs:
-build:
-runs-on: ubuntu-latest
-steps:
-- uses: actions/checkout@v4
-- name: Set up Python
-uses: actions/setup-python@v5
-with:
-python-version: '3.x'
-- name: Run HTML Generator Script
-run: python MahsaGh.py
-- name: Upload index.html Artifact
-uses: actions/upload-artifact@v4
-with:
-name: deployment-files
-path: index.html
-test:
-needs: build
-runs-on: ubuntu-latest
-steps:
-- uses: actions/download-artifact@v4
-with:
-name: deployment-files
-path: .
-- name: Run Content Validation Tests
-run: |
-if [ ! -f index.html ]; then exit 1; fi
-if ! grep -qi "Mahsa Ghazaghi" index.html; then exit 1; fi
-if ! grep -q "40113011016" index.html; then exit 1; fi
-deploy:
-needs: test
-runs-on: ubuntu-latest
-steps:
-- uses: actions/download-artifact@v4
-with:
-name: deployment-files
-path: .
-- name: Deploy via SSH and SCP
-uses: appleboy/ssh-action@master
-with:
-host: ${{ secrets.SSH_HOST }}
-username: ${{ secrets.SSH_USERNAME }}
-key: ${{ secrets.SSH_PRIVATE_KEY }}
-source: "index.html"
-target: ${{ secrets.TARGET_DIR }}
-script: |
-sudo mv index.html ${{ secrets.TARGET_DIR }}/index.html
-echo "Deployment successful."
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run HTML Generator Script
+        run: python MahsaGh.py
+
+      - name: Upload index.html Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-files
+          path: index.html
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: deployment-files
+          path: .
+
+      - name: Run Content Validation Tests
+        run: |
+          if [ ! -f index.html ]; then exit 1; fi
+          if ! grep -qi "Mahsa Ghazaghi" index.html; then exit 1; fi
+          if ! grep -q "40113011016" index.html; then exit 1; fi
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: deployment-files
+          path: .
+
+      - name: Deploy via SSH and SCP
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "index.html"
+          target: ${{ secrets.TARGET_DIR }}
+          script: |
+            sudo mv index.html ${{ secrets.TARGET_DIR }}/index.html
+            echo "Deployment successful."
