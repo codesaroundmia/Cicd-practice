@@ -40,14 +40,14 @@ steps:
 with:
 name: deployment-files
 path: .
-  - name: Deploy via SSH and SCP
-    uses: appleboy/ssh-action@master
-    with:
-      host: ${{ secrets.SSH_HOST }}
-      username: ${{ secrets.SSH_USERNAME }}
-      key: ${{ secrets.SSH_PRIVATE_KEY }}
-      source: "index.html"
-      target: ${{ secrets.TARGET_DIR }}
-      script: |
-        sudo mv index.html ${{ secrets.TARGET_DIR }}/index.html
-        echo "Deployment successful."
+- name: Deploy via SSH and SCP
+uses: appleboy/ssh-action@master
+with:
+host: ${{ secrets.SSH_HOST }}
+username: ${{ secrets.SSH_USERNAME }}
+key: ${{ secrets.SSH_PRIVATE_KEY }}
+source: "index.html"
+target: ${{ secrets.TARGET_DIR }}
+script: |
+sudo mv index.html ${{ secrets.TARGET_DIR }}/index.html
+echo "Deployment successful."
