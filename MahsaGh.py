@@ -79,7 +79,8 @@ html_content = """
         </div>
     </div>
 
-<p>This is a test change to tigger CI/CD.</p>
+<!-- تست نهایی دیپلوی در تاریخ [2025-11-07-v2] -->
+    <p style="text-align:center; color:#2c3e50;">Deployment Test v2.0 - 2025/11/07</p>
 </body>
 </html>
 """
