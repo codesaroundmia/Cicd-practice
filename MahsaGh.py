@@ -71,16 +71,16 @@ html_content = """
 <body>
     <div class="container">
         <div class="card">
-            <h2>نام</h2>
-            <p>مهسا غضاقی</p>
+            <h2>Name</h2>
+            <p>Mahsa Ghazaghi</p>
         </div>
         <div class="card">
-            <h2>شماره دانشجویی</h2>
+            <h2>Student ID</h2>
             <p>40113011016</p>
         </div>
         <div class="card">
-            <h2>وضعیت CI/CD</h2>
-            <p>✅ پایپ‌لاین CI/CD با موفقیت انجام شد!</p>
+            <h2>CI/CD Status</h2>
+            <p> CI/CD pipeline completed successfully!</p>
         </div>
     </div>
 </body>
