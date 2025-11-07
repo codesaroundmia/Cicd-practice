@@ -78,7 +78,7 @@ html_content = """
         </div>
         <div class="card">
             <h2>CI/CD Status</h2>
-            <p>✅ CI/CD pipeline successfully completed!</p>
+            <p> CI/CD pipeline successfully completed!</p>
         </div>
     </div>
 </body>
