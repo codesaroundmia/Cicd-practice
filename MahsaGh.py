@@ -8,14 +8,13 @@ html_content = """
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(135deg, #dfe9f3, #ffffff);
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
             font-family: 'Poppins', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            backdrop-filter: blur(5px);
         }
         .container {
             display: flex;
@@ -26,33 +25,33 @@ html_content = """
             width: 100%;
         }
         .card {
-            background: rgba(255, 255, 255, 0.35);
+            background: rgba(255, 255, 255, 0.25);
             padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
             text-align: center;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             animation: fadeIn 1s ease-in-out;
         }
         .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
         }
         .card h2 {
-            color: #2c3e50;
+            color: #1f2f56;
             margin-bottom: 10px;
-            font-size: 1.7em;
+            font-size: 1.8em;
             font-weight: 600;
         }
         .card p {
-            color: #2c3e50;
+            color: #3b3b3b;
             font-size: 1.3em;
             margin: 0;
         }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
         @media (max-width: 600px) {
@@ -60,7 +59,7 @@ html_content = """
                 padding: 20px;
             }
             .card h2 {
-                font-size: 1.4em;
+                font-size: 1.5em;
             }
             .card p {
                 font-size: 1.1em;
@@ -80,7 +79,7 @@ html_content = """
         </div>
         <div class="card">
             <h2>CI/CD Status</h2>
-            <p> CI/CD pipeline completed successfully!</p>
+            <p>CI/CD pipeline completed successfully!</p>
         </div>
     </div>
 </body>
