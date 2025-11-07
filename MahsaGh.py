@@ -8,60 +8,62 @@ html_content = """
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            background: linear-gradient(135deg, #dfe9f3, #ffffff);
             font-family: 'Poppins', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            overflow: hidden;
+            backdrop-filter: blur(5px);
         }
         .container {
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            padding: 20px;
+            gap: 25px;
+            padding: 30px;
             max-width: 600px;
             width: 100%;
         }
         .card {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 20px;
+            background: rgba(255, 255, 255, 0.35);
+            padding: 25px;
             border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
             text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             animation: fadeIn 1s ease-in-out;
         }
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
         }
         .card h2 {
             color: #2c3e50;
-            margin: 0;
-            font-size: 1.8em;
+            margin-bottom: 10px;
+            font-size: 1.7em;
             font-weight: 600;
         }
         .card p {
-            color: #34495e;
-            font-size: 1.4em;
-            margin: 10px 0 0;
+            color: #2c3e50;
+            font-size: 1.3em;
+            margin: 0;
         }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
         @media (max-width: 600px) {
             .card {
-                padding: 15px;
+                padding: 20px;
             }
             .card h2 {
-                font-size: 1.5em;
+                font-size: 1.4em;
             }
             .card p {
-                font-size: 1.2em;
+                font-size: 1.1em;
             }
         }
     </style>
@@ -69,16 +71,16 @@ html_content = """
 <body>
     <div class="container">
         <div class="card">
-            <h2>Name</h2>
-            <p>Mahsa Ghazaghi</p>
+            <h2>نام</h2>
+            <p>مهسا غضاقی</p>
         </div>
         <div class="card">
-            <h2>Student ID</h2>
+            <h2>شماره دانشجویی</h2>
             <p>40113011016</p>
         </div>
         <div class="card">
-            <h2>CI/CD Status</h2>
-            <p> CI/CD pipeline successfully completed!</p>
+            <h2>وضعیت CI/CD</h2>
+            <p>✅ پایپ‌لاین CI/CD با موفقیت انجام شد!</p>
         </div>
     </div>
 </body>
