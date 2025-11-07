@@ -1,4 +1,3 @@
-
 html_content = """
 <!DOCTYPE html>
 <html lang="en">
@@ -77,19 +76,16 @@ html_content = """
             <h2>Student ID</h2>
             <p>40113011016</p>
         </div>
+        <div class="card">
+            <h2>CI/CD Status</h2>
+            <p>✅ CI/CD pipeline successfully completed!</p>
+        </div>
     </div>
-
-<!-- تست دیپلوی  [2025-11-07-v2] -->
-    <p style="text-align:center; color:#2c3e50;">Deployment Test v2.0 - 2025/11/07</p>
 </body>
 </html>
 """
-
 
 with open("index.html", "w", encoding="utf-8") as file:
     file.write(html_content)
 
 print("index.html is created!")
-
-
-
