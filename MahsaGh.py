@@ -79,7 +79,7 @@ html_content = """
         </div>
     </div>
 
-<!-- تست نهایی دیپلوی در تاریخ [2025-11-07-v2] -->
+<!-- تست دیپلوی در تاریخ [2025-11-07-v2] -->
     <p style="text-align:center; color:#2c3e50;">Deployment Test v2.0 - 2025/11/07</p>
 </body>
 </html>
