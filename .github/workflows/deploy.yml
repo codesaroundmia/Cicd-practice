@@ -58,5 +58,10 @@ jobs:
           source: "index.html"
           target: ${{ secrets.TARGET_DIR }}
           script: |
+            echo "Connecting to ${{ secrets.SSH_HOST }} as ${{ secrets.SSH_USERNAME }}"
+            if [ ! -f index.html ]; then
+              echo "index.html not found after SCP. Deployment failed."
+              exit 1
+            fi
             sudo mv index.html ${{ secrets.TARGET_DIR }}/index.html
             echo "Deployment successful."
